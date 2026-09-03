@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Type library</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="gallery.css" />
+  </head>
+  <body>
+    <header class="masthead">
+      <h1>Type library</h1>
+      <span class="label tally" id="tally"></span>
+    </header>
+
+    <div class="deck">
+      <input
+        class="sample"
+        id="sample"
+        value="Handgloves"
+        placeholder="Type to set every specimen"
+        aria-label="Sample text"
+        spellcheck="false"
+      />
+      <span class="divider"></span>
+      <div class="sizer">
+        <label class="label" for="size">Size</label>
+        <input type="range" id="size" min="18" max="140" step="2" value="56" />
+        <output id="sizeOut">56</output>
+      </div>
+      <span class="divider"></span>
+      <input class="filter" id="filter" placeholder="Filter" aria-label="Filter by name or source" />
+    </div>
+
+    <main class="sheet" id="sheet"></main>
+
+    <div class="lightbox" id="lightbox" hidden><img id="lightboxImg" alt="" /></div>
+
+    <script type="module" src="gallery.js"></script>
+  </body>
+</html>

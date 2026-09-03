@@ -1,0 +1,25 @@
+{
+  "manifest_version": 3,
+  "name": "Type Library",
+  "version": "0.1.0",
+  "description": "Save typefaces from any page with a specimen screenshot and the live font file.",
+  "permissions": ["activeTab", "scripting", "storage", "unlimitedStorage", "tabs"],
+  "host_permissions": ["<all_urls>"],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Type Library"
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data:"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["gallery.html"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}

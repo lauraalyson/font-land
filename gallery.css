@@ -1,0 +1,374 @@
+:root {
+  --paper: #fcfcfd;
+  --ink: #101014;
+  --ink-2: #5b5b66;
+  --muted: #9a9aa5;
+  --line: #e8e8ee;
+  --hair: #edeef2;
+  --wash: #f4f4f7;
+  --accent: #2f2be0;
+  --full: #1f9d62;
+  --partial: #c98a16;
+  --pad: 40px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--paper);
+}
+
+body {
+  margin: 0;
+  color: var(--ink);
+  font-family: 'Instrument Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 13px;
+  letter-spacing: -0.005em;
+  -webkit-font-smoothing: antialiased;
+}
+
+.label {
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ---------- masthead ---------- */
+
+.masthead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 28px var(--pad) 20px;
+}
+
+.masthead h1 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.tally {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- sticky control deck ---------- */
+
+.deck {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 0 var(--pad);
+  height: 60px;
+  background: rgba(252, 252, 253, 0.92);
+  backdrop-filter: blur(8px);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.sample {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  font: inherit;
+  font-size: 15px;
+  color: var(--ink);
+  padding: 6px 0;
+}
+
+.sample::placeholder {
+  color: var(--muted);
+}
+
+.sample:focus {
+  outline: 0;
+}
+
+.deck .divider {
+  width: 1px;
+  height: 22px;
+  background: var(--line);
+}
+
+.sizer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: none;
+}
+
+.sizer output {
+  width: 34px;
+  text-align: right;
+  color: var(--ink-2);
+  font-variant-numeric: tabular-nums;
+}
+
+input[type='range'] {
+  width: 104px;
+  accent-color: var(--ink);
+}
+
+.filter {
+  flex: none;
+  width: 132px;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  background: transparent;
+  font: inherit;
+  color: var(--ink);
+  padding: 5px 0;
+}
+
+.filter:focus {
+  outline: 0;
+  border-bottom-color: var(--ink);
+}
+
+/* ---------- sheet ---------- */
+
+.sheet {
+  padding: 0 var(--pad) 96px;
+}
+
+.row {
+  padding: 26px 0 30px;
+  border-bottom: 1px solid var(--hair);
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.family {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.sep {
+  color: var(--line);
+}
+
+.cut,
+.origin,
+.when {
+  color: var(--ink-2);
+}
+
+.origin {
+  text-decoration: none;
+  color: var(--ink-2);
+  border-bottom: 1px solid transparent;
+}
+
+.origin:hover {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+.state {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: auto;
+  color: var(--ink-2);
+  white-space: nowrap;
+}
+
+.state::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--muted);
+}
+
+.state[data-state='full']::before {
+  background: var(--full);
+}
+
+.state[data-state='partial']::before {
+  background: var(--partial);
+}
+
+.acts {
+  display: flex;
+  gap: 4px;
+  flex: none;
+  opacity: 0;
+  transition: opacity 0.12s ease;
+}
+
+.row:hover .acts,
+.row:focus-within .acts {
+  opacity: 1;
+}
+
+.acts button {
+  border: 0;
+  background: transparent;
+  color: var(--ink-2);
+  font: inherit;
+  font-size: 12px;
+  padding: 3px 7px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.acts button:hover {
+  background: var(--wash);
+  color: var(--ink);
+}
+
+.acts button.danger:hover {
+  color: #a2231d;
+}
+
+/* the point of the whole thing */
+.specimen {
+  font-size: 56px;
+  line-height: 1.14;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+  overflow: hidden;
+  padding: 2px 0 6px;
+  -webkit-mask-image: linear-gradient(to right, #000 88%, transparent 100%);
+  mask-image: linear-gradient(to right, #000 88%, transparent 100%);
+}
+
+.specimen.pending {
+  color: var(--muted);
+}
+
+.shot-only {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.shot-only img {
+  max-width: min(100%, 720px);
+  max-height: 180px;
+  border: 1px solid var(--hair);
+  border-radius: 4px;
+  cursor: zoom-in;
+  display: block;
+}
+
+.shot-only p {
+  margin: 0;
+  max-width: 180px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.thumb {
+  height: 30px;
+  width: auto;
+  max-width: 120px;
+  object-fit: cover;
+  object-position: left center;
+  border: 1px solid var(--hair);
+  border-radius: 3px;
+  cursor: zoom-in;
+  flex: none;
+}
+
+/* ---------- empty ---------- */
+
+.empty {
+  padding: 88px var(--pad);
+  max-width: 380px;
+}
+
+.empty h2 {
+  margin: 0 0 8px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.empty p {
+  margin: 0;
+  color: var(--ink-2);
+  line-height: 1.6;
+}
+
+/* ---------- lightbox ---------- */
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  display: grid;
+  place-items: center;
+  padding: 40px;
+  background: rgba(16, 16, 20, 0.55);
+  cursor: zoom-out;
+}
+
+.lightbox[hidden] {
+  display: none;
+}
+
+.lightbox img {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 4px;
+  background: #fff;
+}
+
+/* ---------- misc ---------- */
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+@media (max-width: 720px) {
+  :root {
+    --pad: 20px;
+  }
+  .deck {
+    height: auto;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 12px var(--pad);
+  }
+  .deck .divider {
+    display: none;
+  }
+  .sample {
+    flex: 1 0 100%;
+  }
+  .filter {
+    width: 100%;
+    flex: 1;
+  }
+  .meta {
+    flex-wrap: wrap;
+  }
+  .state {
+    margin-left: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+}
